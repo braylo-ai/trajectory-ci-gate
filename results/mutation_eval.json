@@ -1,0 +1,59 @@
+{
+  "tasks": 5,
+  "main_branch_pass": 5,
+  "mutants_total": 107,
+  "mutants_caught": 102,
+  "by_kind": {
+    "drop": "28/28",
+    "swap": "18/23",
+    "corrupt": "28/28",
+    "dup": "28/28"
+  },
+  "final_answer_only_caught": 0,
+  "final_answer_only_note": "final answer unchanged in every mutant by construction",
+  "accepted_mutants": [
+    "refund_expired: swap verify_identity<->check_refund_policy",
+    "refund_large: swap verify_identity<->check_refund_policy",
+    "refund_mid: swap verify_identity<->check_refund_policy",
+    "refund_not_delivered: swap verify_identity<->check_refund_policy",
+    "refund_small: swap verify_identity<->check_refund_policy"
+  ],
+  "pr_variant": {
+    "refund_expired": {
+      "passed": false,
+      "final_answer_same": true,
+      "deviations": [
+        "missing_required",
+        "missing_required"
+      ]
+    },
+    "refund_large": {
+      "passed": true,
+      "final_answer_same": true,
+      "deviations": []
+    },
+    "refund_mid": {
+      "passed": true,
+      "final_answer_same": true,
+      "deviations": []
+    },
+    "refund_not_delivered": {
+      "passed": false,
+      "final_answer_same": true,
+      "deviations": [
+        "missing_required",
+        "missing_required"
+      ]
+    },
+    "refund_small": {
+      "passed": false,
+      "final_answer_same": true,
+      "deviations": [
+        "missing_required",
+        "missing_required"
+      ]
+    }
+  },
+  "pr_variant_tasks_failed": 3,
+  "pr_variant_final_answers_identical": 5
+}

@@ -1,0 +1,47 @@
+task_id: refund_not_delivered
+nodes:
+  order:
+    tool: get_order
+    args:
+      order_id: A500
+  customer:
+    tool: lookup_customer
+    args:
+      customer_id:
+        ref: order.result.customer
+  verify:
+    tool: verify_identity
+    args:
+      customer_id:
+        ref: customer.result.customer_id
+      method:
+        in:
+        - email_otp
+        - sms_otp
+  policy:
+    tool: check_refund_policy
+    args:
+      order_id: A500
+      amount:
+        ref: order.result.amount
+  email:
+    tool: send_email
+    args:
+      to:
+        ref: customer.result.email
+      template: refund_denied
+edges:
+- - order
+  - customer
+- - customer
+  - verify
+- - order
+  - policy
+- - policy
+  - email
+forbidden:
+- issue_refund
+allow_extra: false
+max_calls:
+  issue_refund: 1
+max_steps: 8

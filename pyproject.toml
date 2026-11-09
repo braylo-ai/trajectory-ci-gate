@@ -1,0 +1,17 @@
+[project]
+name = "trajgate"
+version = "0.1.0"
+description = "Grade agent tool-call trajectories against golden DAGs in CI"
+requires-python = ">=3.10"
+dependencies = ["pyyaml>=6"]
+license = {text = "MIT"}
+
+[project.scripts]
+trajgate = "trajgate.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["trajgate", "sample_agent"]

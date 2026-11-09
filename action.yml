@@ -1,0 +1,22 @@
+name: trajectory-ci-gate
+description: Grade agent tool-call trajectories against golden DAGs; fail the PR on deviation.
+inputs:
+  golden:
+    description: Directory of golden DAG YAML files
+    required: true
+  runs:
+    description: Directory of recorded trajectory JSON files (<task_id>.json)
+    required: true
+  min-score:
+    description: Fail tasks scoring below this (1.0 = any deviation fails)
+    default: "1.0"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: pip install "${{ github.action_path }}"
+    - shell: bash
+      run: trajgate check --golden "${{ inputs.golden }}" --runs "${{ inputs.runs }}" --min-score "${{ inputs.min-score }}" --report trajectory-report.md
